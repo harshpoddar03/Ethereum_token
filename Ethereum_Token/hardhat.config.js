@@ -1,4 +1,5 @@
 require("@nomicfoundation/hardhat-toolbox");
+require("dotenv").config();
 
 /** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
@@ -11,12 +12,15 @@ module.exports = {
       }
     }
   },
+  networks: {
+    sepolia: {
+      url: process.env.INFURA_SEPOLIA_ENDPOINT,
+      accounts: [process.env.PRIVATE_KEY]
+    }
+  },
   paths: {
     sources: "./contracts",
   },
-  // If you need to specify custom file names or contract names:
-  // sourcesPath is the directory where your contracts are located
-  // contractNames is an object mapping file names to contract names
   sourcesPath: "./contracts",
   contractNames: {
     "devtoken.sol": "DevToken"
